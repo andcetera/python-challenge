@@ -45,13 +45,17 @@ with open(csvpath, 'r') as csvfile:
                 greatest_decrease = r
                 gd_month = row[0]
 
-            
-        
-
-
 
 
 print(total_months, net_total, gi_month, greatest_increase, gd_month, greatest_decrease)
+
+
+
+
+
+
+
+
 
 
 
