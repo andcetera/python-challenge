@@ -75,7 +75,7 @@ print('Greatest Decrease in Profits: {} (${})'.format(gd_month, greatest_decreas
 print('---')
 
 #path to create finished report
-txtpath = os.path.join('analysis','Financial Report.txt')
+txtpath = os.path.join('Analysis','Financial Report.txt')
 
 #open new file to print finished report
 with open(txtpath, 'w') as textfile:
