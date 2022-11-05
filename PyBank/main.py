@@ -45,7 +45,7 @@ with open(csvpath, 'r') as csvfile:
             #create a variable to store the latest member of this list for simplicity
             c = changes[len(changes)-1]
         
-            #check P/L against greatest increase/decrease and update date & amount as found
+            #check P/L against greatest increase/decrease and update the date & amount if found
             if c > greatest_increase:
                 greatest_increase = c
                 gi_month = row[0]
@@ -62,8 +62,7 @@ with open(csvpath, 'r') as csvfile:
         total_ch += ch   
     average_change = round(total_ch/(total_months-1), 2)
 
-
-
+#print the finished results to terminal
 print('---')
 print('Financial Analysis')
 print('---------------------------')
@@ -77,7 +76,7 @@ print('---')
 #path to create finished report
 txtpath = os.path.join('Analysis','Financial Report.txt')
 
-#open new file to print finished report
+#open new file to print finished report to text file
 with open(txtpath, 'w') as textfile:
     textfile.write('---\n')
     textfile.write('Financial Analysis\n')
@@ -88,5 +87,3 @@ with open(txtpath, 'w') as textfile:
     textfile.write('Greatest Increase in Profits: {} (${})\n'.format(gi_month, greatest_increase))
     textfile.write('Greatest Decrease in Profits: {} (${})\n'.format(gd_month, greatest_decrease))
     textfile.write('---')
-
-
