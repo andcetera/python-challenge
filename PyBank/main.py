@@ -90,17 +90,3 @@ with open(txtpath, 'w') as textfile:
     textfile.write('---')
 
 
- #```text   
- # Financial Analysis
- # ----------------------------
- # Total Months: 86
- # Total: $22564198
- # Average Change: $-8311.11
- # Greatest Increase in Profits: Aug-16 ($1862002)
- # Greatest Decrease in Profits: Feb-14 ($-1825558)
- # ```
-#In addition, your final script should both print the analysis to the terminal and export a text file with the results.
-
-#Consider what you've learned so far. You've learned how to import modules like `csv`; to read and write files in various formats; 
- #to store contents in variables, lists, and dictionaries; to iterate through basic data structures; and to debug along the way. 
- #Using what you've learned, try to break down your tasks into discrete mini-objectives.
