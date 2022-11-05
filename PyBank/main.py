@@ -9,7 +9,10 @@ total_months = 0
 # The net total amount of "Profit/Losses" over the entire period
 net_total = 0
 # The changes in "Profit/Losses" over the entire period, and then the average of those changes
-average_change = 0.0  # hmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+last_month = 0
+changes = []
+total_ch = 0.0
+average_change = 0.0
 # The greatest increase in profits over the entire period
 greatest_increase = 0
 # The greatest decrease in profits over the entire period
@@ -21,7 +24,7 @@ with open(csvpath, 'r') as csvfile:
     #open a csv reader
     csvreader = csv.reader(csvfile, delimiter=',')
 
-    #store the header in a variable for later
+    #store the report header
     header = next(csvreader)
 
     #iterate through each row in the report
@@ -32,20 +35,35 @@ with open(csvpath, 'r') as csvfile:
 
         #create a variable to cast the profit/loss column value to an integer for simplicity
         r = int(row[1])
-            
-        #add the profit/loss to a running total
+        
+        #add the P/L to a running total
         net_total += r
 
-        #check profit/loss against greatest increase/decrease and update date & amount as found
-        if r > greatest_increase:
-            greatest_increase = r
-            gi_month = row[0]
-            
-        if r < greatest_decrease:
-            greatest_decrease = r
-            gd_month = row[0]
+        #keep a running list of changes in month over month P/L
+        if last_month !=0:
+            changes.append(r-last_month)
+            #create a variable to store the latest member of this list for simplicity
+            c = changes[len(changes)-1]
+        
+            #check P/L against greatest increase/decrease and update date & amount as found
+            if c > greatest_increase:
+                greatest_increase = c
+                gi_month = row[0]
+                
+            if c < greatest_decrease:
+                greatest_decrease = c
+                gd_month = row[0]
 
-    average_change = round(net_total/total_months, 2)
+        #update last month's info to compare P/L
+        last_month = r
+
+    #get the average of the monthly changes in P/L
+    for ch in changes:
+        total_ch += ch   
+    average_change = round(total_ch/(total_months-1), 2)
+
+print(changes)
+
 
 print('---')
 print('Financial Analysis')
