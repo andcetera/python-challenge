@@ -18,46 +18,44 @@ greatest_decrease = 0
 #open the csv report
 with open(csvpath, 'r') as csvfile:
 
-        #open a csv reader
-        csvreader = csv.reader(csvfile, delimiter=',')
+    #open a csv reader
+    csvreader = csv.reader(csvfile, delimiter=',')
 
-        #store the header in a variable for later
-        header = next(csvreader)
+    #store the header in a variable for later
+    header = next(csvreader)
 
-        #iterate through each row in the report
-        for row in csvreader:
+    #iterate through each row in the report
+    for row in csvreader:
 
-            #count the total months in the report
-            total_months += 1
+        #count the total months in the report
+        total_months += 1
 
-            #create a variable to cast the profit/loss column value to an integer for simplicity
-            r = int(row[1])
+        #create a variable to cast the profit/loss column value to an integer for simplicity
+        r = int(row[1])
             
-            #add the profit/loss to a running total
-            net_total += r
+        #add the profit/loss to a running total
+        net_total += r
 
-            #check profit/loss against greatest increase/decrease and update date & amount as found
-            if r > greatest_increase:
-                greatest_increase = r
-                gi_month = row[0]
+        #check profit/loss against greatest increase/decrease and update date & amount as found
+        if r > greatest_increase:
+            greatest_increase = r
+            gi_month = row[0]
             
-            if r < greatest_decrease:
-                greatest_decrease = r
-                gd_month = row[0]
+        if r < greatest_decrease:
+            greatest_decrease = r
+            gd_month = row[0]
 
+    average_change = round(net_total/total_months, 2)
 
-
-print(total_months, net_total, gi_month, greatest_increase, gd_month, greatest_decrease)
-
-
-
-
-
-
-
-
-
-
+print('---')
+print('Financial Analysis')
+print('---------------------------')
+print('Total Months: {}'.format(total_months))
+print('Total: ${}'.format(net_total))
+print('Average Change: ${}'.format(average_change))
+print('Greatest Increase in Profits: {} (${})'.format(gi_month, greatest_increase))
+print('Greatest Decrease in Profits: {} (${})'.format(gd_month, greatest_decrease))
+print('---')
 
  #```text
  # Financial Analysis

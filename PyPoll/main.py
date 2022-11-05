@@ -5,18 +5,12 @@ csvpath = os.path.join('Resources', 'election_data.csv')
 # The total number of votes cast
 total_votes = 0
 # A complete list of candidates who received votes
-cand = []
+candidates = []
 # The percentage of votes each candidate won
-
+percentages = {}
 # The total number of votes each candidate won
-
+count_won = {}
 # The winner of the election based on popular vote.
-candidate = {
-                'name': [],
-                'percentages': 0.0,
-                'count': 0,
-                'winner': False,
-            }
 
 #open the csv report
 with open(csvpath, 'r') as csvfile:
@@ -34,12 +28,24 @@ with open(csvpath, 'r') as csvfile:
             total_votes += 1
 
             #check if candidate voted for is included in our list yet, if not, add
-            if row[2] not in candidate['name']:
-                candidate['name'].append(row[2])
+            if row[2] not in candidates:
+                candidates.append(row[2])
+
+                #initialize candidate vote count
+                count_won[candidates[len(candidates)-1]] = 0
+            
+            #add each vote to each candidate's total
+            count_won[row[2]] += 1
+
+        #percentages = {k:(v/total_votes) for (k, v) in count_won}
+
+
+
+
 
             
 
-print(total_votes, candidate['name'])
+print(total_votes, candidates, count_won, percentages)
 
 
  # ```text
