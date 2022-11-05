@@ -62,7 +62,6 @@ with open(csvpath, 'r') as csvfile:
         total_ch += ch   
     average_change = round(total_ch/(total_months-1), 2)
 
-print(changes)
 
 
 print('---')
@@ -75,7 +74,23 @@ print('Greatest Increase in Profits: {} (${})'.format(gi_month, greatest_increas
 print('Greatest Decrease in Profits: {} (${})'.format(gd_month, greatest_decrease))
 print('---')
 
- #```text
+#path to create finished report
+txtpath = os.path.join('analysis','Financial Report.txt')
+
+#open new file to print finished report
+with open(txtpath, 'w') as textfile:
+    textfile.write('---\n')
+    textfile.write('Financial Analysis\n')
+    textfile.write('---------------------------\n')
+    textfile.write('Total Months: {}\n'.format(total_months))
+    textfile.write('Total: ${}\n'.format(net_total))
+    textfile.write('Average Change: ${}\n'.format(average_change))
+    textfile.write('Greatest Increase in Profits: {} (${})\n'.format(gi_month, greatest_increase))
+    textfile.write('Greatest Decrease in Profits: {} (${})\n'.format(gd_month, greatest_decrease))
+    textfile.write('---')
+
+
+ #```text   
  # Financial Analysis
  # ----------------------------
  # Total Months: 86
